@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class MemoryMemberRepositoryTest{
 
@@ -16,15 +16,20 @@ class MemoryMemberRepositoryTest{
 
     @AfterEach
     public void afterEach() {
+
         repository.clearStore();
     }
 
     @Test
     public void save(){
+        // given
         Member member = new Member();
         member.setName("spring");
 
+        // when
         repository.save(member);
+
+        // then
         Member result = repository.findById(member.getId()).get();
         assertThat(result).isEqualTo(member);
 
