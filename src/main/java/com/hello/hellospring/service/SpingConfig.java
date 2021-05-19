@@ -1,6 +1,7 @@
 package com.hello.hellospring.service;
 
 import com.hello.hellospring.repository.JdbcMemberRepository;
+import com.hello.hellospring.repository.JdbcTemplateMemberRepository;
 import com.hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,7 @@ public class SpingConfig {
     public MemberRepository memberRepository() {
 
         //return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+        //return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 }
