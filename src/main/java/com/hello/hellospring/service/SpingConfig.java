@@ -1,22 +1,23 @@
 package com.hello.hellospring.service;
 
-import com.hello.hellospring.repository.JdbcMemberRepository;
-import com.hello.hellospring.repository.JdbcTemplateMemberRepository;
+import com.hello.hellospring.repository.JpaMemberRepository;
 import com.hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.sql.DataSource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Configuration
 public class SpingConfig {
 
-    private DataSource dataSource;
+    @PersistenceContext
+    private EntityManager em;
 
     @Autowired
-    public SpingConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public SpingConfig(EntityManager em) {
+        this.em = em;
     }
 
     @Bean
@@ -29,6 +30,7 @@ public class SpingConfig {
 
         //return new MemoryMemberRepository();
         //return new JdbcMemberRepository(dataSource);
-        return new JdbcTemplateMemberRepository(dataSource);
+        //return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 }
