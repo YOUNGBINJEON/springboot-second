@@ -20,6 +20,8 @@ public class SpingConfig {
         return new MemberService(memberRepository);
     }
 
+
+
 //    @Bean
 //    public MemberRepository memberRepository() {
 //
